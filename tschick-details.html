@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta property="og:title" content="Site von Christian,Philip und Sami">
+    <meta property="og:description" content="Miniprojekt von Christian,Philip und Sami">
+    <meta property="og:image" content="">
+    <meta property="og:url" content="">
+    <meta property="og:type" content="website">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tschick - Ausführliche Filmbeschreibung</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+        }
+
+        .content {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        h1, h2 {
+            color: #2c3e50;
+        }
+
+        h2 {
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin: 20px 0;
+            color: #3498db;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+
+        .quote {
+            font-style: italic;
+            color: #666;
+            border-left: 3px solid #3498db;
+            padding-left: 20px;
+            margin: 20px 0;
+        }
+
+        .gallery {
+            max-width: 800px;
+            margin: 20px auto;
+        }
+
+        .gallery-image {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+            cursor: pointer;
+            object-fit: cover;
+            min-height: 300px;
+            background-color: #f5f5f5;
+        }
+
+        .gallery-image:hover {
+            transform: scale(1.02);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+        }
+
+        .gallery-item {
+            margin: 0;
+        }
+
+        figcaption {
+            text-align: center;
+            margin-top: 10px;
+            color: #666;
+            font-style: italic;
+            padding: 5px;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
+        }
+
+        .modal-content {
+            max-width: 90%;
+            max-height: 90vh;
+            margin: auto;
+            display: block;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .close {
+            position: absolute;
+            top: 15px;
+            right: 35px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .review-quote {
+            background: #f8f9fa;
+            padding: 20px;
+            border-left: 4px solid #3498db;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .review-quote p {
+            margin: 0;
+        }
+
+        .review-quote em {
+            color: #666;
+            font-size: 0.9em;
+        }
+
+        p {
+            line-height: 1.8;
+            margin-bottom: 1.5em;
+        }
+
+        ul {
+            margin-bottom: 1.5em;
+        }
+
+        li {
+            margin-bottom: 0.5em;
+        }
+
+        h2 {
+            margin-top: 2em;
+            color: #2c3e50;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 0.5em;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .gallery-image {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }
+
+        .gallery-image:hover {
+            transform: scale(1.02);
+        }
+
+        .gallery-item {
+            margin: 20px 0;
+        }
+
+        figcaption {
+            text-align: center;
+            margin-top: 10px;
+            color: #666;
+            font-style: italic;
+        }
+
+        /* Добавим индикатор загрузки */
+        .gallery-image.loading {
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 0.6; }
+            50% { opacity: 1; }
+            100% { opacity: 0.6; }
+        }
+
+        .next-page {
+            display: inline-block;
+            padding: 1em 2em;
+            background: #0066cc; /* Новый синий цвет */
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .next-page:hover {
+            background: #0052a3; /* Более тёмный синий при наведении */
+            transform: translateX(5px);
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+        <a href="./index.html" class="back-link">← Zurück zur Übersicht</a>
+        
+        <h1>Tschick - Eine Geschichte über Freundschaft und Abenteuer</h1>
+
+        <div class="gallery">
+            <figure class="gallery-item">
+                <img src="https://www.uncut.at/data/pictures/10711/41232_big.jpg" 
+                     alt="Maik und Tschick lachen im Auto"
+                     class="gallery-image">
+                <figcaption>Die Hauptcharaktere Maik und Tschick auf ihrer unvergesslichen Reise</figcaption>
+            </figure>
+        </div>
+
+        <h2>Ausführliche Handlung</h2>
+        <p>
+            Der 14-jährige Maik Klingenberg lebt in einer gutbürgerlichen Gegend in Berlin. Seine Mutter ist 
+            Alkoholikerin und befindet sich regelmäßig in Entzugskliniken, sein Vater ist mit seiner jungen 
+            Assistentin beschäftigt. Als der neue Mitschüler Andrej Tschichatschow, genannt "Tschick", in 
+            seine Klasse kommt, ändert sich Maiks Leben grundlegend.
+        </p>
+
+        <div class="quote">
+            "Manchmal fährt man weg und weiß nicht warum, und manchmal weiß man warum und fährt trotzdem."
+        </div>
+
+        <h2>Die Hauptcharaktere</h2>
+        <h3>Maik Klingenberg</h3>
+        <p>
+            Ein sensibler, künstlerisch begabter Teenager aus gutem Hause, der sich oft einsam und unverstanden 
+            fühlt. Er ist heimlich in seine Mitschülerin Tatjana verliebt.
+        </p>
+
+        <h3>Andrej Tschichatschow (Tschick)</h3>
+        <p>
+            Ein Spätaussiedler aus Russland, der durch sein selbstbewusstes und unangepasstes Auftreten auffällt. 
+            Er kommt aus schwierigen Verhältnissen, lässt sich davon aber nicht unterkriegen.
+        </p>
+
+        <h2>Themen des Films</h2>
+        <ul>
+            <li>Freundschaft und Vertrauen</li>
+            <li>Erwachsenwerden und Selbstfindung</li>
+            <li>Außenseitertum und Akzeptanz</li>
+            <li>Familie und Vernachlässigung</li>
+            <li>Abenteuer und Freiheit</li>
+        </ul>
+
+        <h2>Die Geschichte hinter dem Film</h2>
+        <figure class="gallery-item">
+            <img src="https://www.uncut.at/data/pictures/10711/41244_big.jpg" 
+                 alt="Maik und Tschick im Auto"
+                 class="gallery-image">
+            <figcaption>Die Hauptcharaktere auf ihrer Reise durch Deutschland</figcaption>
+        </figure>
+        <p>
+            "Tschick" basiert auf dem gleichnamigen Roman von Wolfgang Herrndorf, der 2010 erschien und 
+            schnell zum Bestseller wurde. Das Buch verkaufte sich über 2 Millionen Mal und wurde in 24 
+            Sprachen übersetzt. Fatih Akin, der Regisseur, war von der Geschichte so begeistert, dass 
+            er die Filmrechte sofort erwerben wollte.
+        </p>
+
+        <h2>Die Entstehung des Films</h2>
+        <p>
+            Die Suche nach den Hauptdarstellern war eine besondere Herausforderung. Über 1000 Jugendliche 
+            wurden gecastet, bis man Tristan Göbel und Anand Batbileg fand. Besonders die Rolle des Tschick 
+            war schwer zu besetzen, da der Schauspieler mongolische Wurzeln haben sollte. Mit Anand Batbileg 
+            fand man einen Newcomer, der die Rolle perfekt verkörperte.
+        </p>
+
+        <h2>Der legendäre Lada</h2>
+        <figure class="gallery-item">
+            <img src="https://www.automativ.de/wp-content/uploads/2016/10/Lada-4x4-Niva-Taiga-im-Test-in-den-Vogesen-im-Elsass-Frankreich-Lada-kommt-ueberall-durch-guenstigster-SUV-Offroad-AUTOmativ-46.jpg" 
+                 alt="Der blaue Lada"
+                 class="gallery-image">
+            <figcaption>Der berühmte blaue Lada Niva - das Herzstück des Films</figcaption>
+        </figure>
+        <p>
+            Das Auto im Film, ein blauer Lada Niva, wurde zu einem eigenen Charakter. Insgesamt wurden sechs 
+            identische Fahrzeuge für die Dreharbeiten verwendet. Jedes wurde für verschiedene Szenen speziell 
+            präpariert. Die Autos wurden in Tschechien gekauft und extra für den Film restauriert. Heute 
+            steht eines der Fahrzeuge im Filmmuseum Berlin.
+        </p>
+
+        <h2>Drehorte und Landschaften</h2>
+        <div class="gallery-grid">
+            <figure class="gallery-item">
+                <img src="https://www.uncut.at/data/pictures/10711/41230_big.jpg" 
+                     alt="Landschaftsszene"
+                     class="gallery-image">
+                <figcaption>Die malerischen Landschaften Deutschlands</figcaption>
+            </figure>
+            <figure class="gallery-item">
+                <img src="https://www.uncut.at/data/pictures/10711/41236_big.jpg" 
+                     alt="Straßenszene"
+                     class="gallery-image">
+                <figcaption>Unterwegs auf verlassenen Landstraßen</figcaption>
+            </figure>
+        </div>
+
+        <h2>Unvergessliche Momente</h2>
+        <div class="gallery-grid">
+            <figure class="gallery-item">
+                <img src="https://www.uncut.at/data/pictures/10711/41236_big.jpg" 
+                     alt="See Szene"
+                     class="gallery-image">
+                <figcaption>Entspannung am idyllischen See</figcaption>
+            </figure>
+            <figure class="gallery-item">
+                <img src="https://www.uncut.at/data/pictures/10711/41238_big.jpg" 
+                     alt="Nachtszene"
+                     class="gallery-image">
+                <figcaption>Abenteuer unter dem Sternenhimmel</figcaption>
+            </figure>
+        </div>
+
+        <h2>Gesellschaftliche Themen</h2>
+        <p>
+            Der Film behandelt verschiedene aktuelle Themen der deutschen Gesellschaft:
+        </p>
+        <ul>
+            <li>Integration und kulturelle Unterschiede</li>
+            <li>Klassenunterschiede und soziale Mobilität</li>
+            <li>Familienstrukturen in der modernen Gesellschaft</li>
+            <li>Jugend und Erwachsenwerden im 21. Jahrhundert</li>
+            <li>Ost-West-Verhältnis im wiedervereinigten Deutschland</li>
+        </ul>
+
+        <h2>Filmische Besonderheiten</h2>
+        <p>
+            Fatih Akin verwendete besondere filmische Mittel, um die Geschichte zu erzählen:
+        </p>
+        <ul>
+            <li>Handkamera für authentische, dynamische Szenen</li>
+            <li>Natürliches Licht statt künstlicher Beleuchtung</li>
+            <li>Lange Einstellungen während der Autofahrten</li>
+            <li>Musik als eigenständiges Erzählelement</li>
+        </ul>
+
+        <h2>Internationale Resonanz</h2>
+        <p>
+            Der Film wurde auf verschiedenen internationalen Filmfestivals gezeigt:
+        </p>
+        <ul>
+            <li>Toronto International Film Festival</li>
+            <li>London Film Festival</li>
+            <li>Festival do Rio</li>
+            <li>Stockholm Film Festival</li>
+        </ul>
+
+        <h2>Pädagogischer Wert</h2>
+        <p>
+            "Tschick" wird heute in vielen deutschen Schulen als Unterrichtsmaterial verwendet. Der Film 
+            eignet sich besonders gut für die Diskussion von Themen wie:
+        </p>
+        <ul>
+            <li>Freundschaft und Loyalität</li>
+            <li>Vorurteile und deren Überwindung</li>
+            <li>Selbstfindung und Identität</li>
+            <li>Familie und Beziehungen</li>
+            <li>Mut und Zivilcourage</li>
+        </ul>
+
+        <h2>Einfluss auf die deutsche Filmlandschaft</h2>
+        <p>
+            "Tschick" hat das Genre des deutschen Jugendfilms nachhaltig beeinflusst. Der Film zeigt, 
+            dass auch deutsche Produktionen internationales Niveau erreichen können und dabei authentisch 
+            und nah an der Lebensrealität junger Menschen bleiben können. Er öffnete die Tür für weitere 
+            Jugendfilme, die sich trauen, ernste Themen mit Leichtigkeit und Humor zu behandeln.
+        </p>
+
+        <h2>Nachwirkung</h2>
+        <p>
+            Nach dem Erfolg des Films gab es mehrere Theateradaptionen in verschiedenen deutschen Städten. 
+            Die Geschichte von Maik und Tschick wurde zum modernen Klassiker und wird oft in einem Atemzug 
+            mit anderen großen Jugendgeschichten wie "Die Welle" oder "Das fliegende Klassenzimmer" genannt.
+        </p>
+
+        <a href="./index.html" class="back-link">← Zurück zur Übersicht</a>
+
+        <!-- Навигация по страницам -->
+        <div class="page-navigation">
+            <div class="current-page">Seite 2</div>
+            <a href="tschick-extras.html" class="next-page">
+                Zur Seite 3: Behind the Scenes
+                <span class="arrow">→</span>
+            </a>
+        </div>
+    </div>
+
+    <div id="imageModal" class="modal">
+        <span class="close">&times;</span>
+        <img class="modal-content" id="modalImg">
+    </div>
+
+    <script>
+        const modal = document.getElementById('imageModal');
+        const modalImg = document.getElementById('modalImg');
+        const closeBtn = document.getElementsByClassName('close')[0];
+        const galleryImages = document.querySelectorAll('.gallery-image');
+
+        galleryImages.forEach(img => {
+            img.onclick = function() {
+                modal.style.display = "block";
+                modalImg.src = this.src;
+            }
+        });
+
+        closeBtn.onclick = function() {
+            modal.style.display = "none";
+        }
+
+        modal.onclick = function(event) {
+            if (event.target === modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
+</body>
+</html> 
